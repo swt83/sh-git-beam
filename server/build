@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# -------------------------------------------------
+# Capture project name.
+# -------------------------------------------------
+WORKTREE="$1"
+if [ "$WORKTREE" = "" ]
+then
+	echo "You failed to provide a build name!"
+	exit 1
+fi
+
+# -------------------------------------------------
+# Make docroot directory.
+# -------------------------------------------------
+mkdir /var/www/html/$WORKTREE
+
+# -------------------------------------------------
+# Make git project directory.
+# -------------------------------------------------
+mkdir $WORKTREE.git
+cd $WORKTREE.git
+git init --bare
+git config core.worktree /var/www/html/$WORKTREE
+git config core.bare false
+git config receive.denycurrentbranch ignore
+
+# -------------------------------------------------
+# Copy git hook into project directory.
+# -------------------------------------------------
+cd hooks
+cp ~/hook post-receive
+chmod +x post-receive
+cd ~

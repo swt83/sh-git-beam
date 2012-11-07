@@ -1,0 +1,100 @@
+#!/bin/sh
+
+#
+# A shell script for collapsing and deploying GIT super-projects to the cloud.
+#
+# @package    Deploy
+# @author     Scott Travis <scott.w.travis@gmail.com>
+# @link       http://github.com/swt83/git-deploy
+# @license    MIT License
+#
+# *************************************************
+
+REMOTE=""
+
+# *************************************************
+
+# -------------------------------------------------
+# Set the local directory that we are working in,
+# and make sure that we have a remote destination
+# set and ready to go. Flight check.
+# -------------------------------------------------
+LOCAL=$(pwd)
+if [ "$REMOTE" = "" ]
+then
+	echo "You failed to provide remote git address!"
+	exit 1
+fi
+echo "\n"
+echo "Deploying to \"$REMOTE\"."
+
+# -------------------------------------------------
+# Copy the local working directory to a temporary
+# location and remove all existing GIT information,
+# which allows us to collapse the repository.
+# -------------------------------------------------
+echo "\033[1;31m""COPYING LOCAL REPO.""\033[0m";
+cd ..
+rm -rf _temp > /dev/null 2>&1
+mkdir _temp > /dev/null 2>&1
+cp -a $LOCAL/. _temp/ > /dev/null 2>&1
+cd _temp
+rm -rf `find . -name '.git'` > /dev/null 2>&1
+rm -rf `find . -name '.gitmodules'` > /dev/null 2>&1
+rm -rf `find . -name '.gitattributes'` > /dev/null 2>&1
+
+# -------------------------------------------------
+# Amend every .gitignore file to NOT ignore itself.
+# We need this to preserve file structures that
+# include empty directories when we deploy.
+# -------------------------------------------------
+for f in $(find . -name '.gitignore'); do echo "\n!.gitignore" >> $f; done
+
+# -------------------------------------------------
+# Create a new clean repository that has now
+# collapsed all the submodules that existed before.
+# Previous .gitignore rules still apply.
+# -------------------------------------------------
+git init > /dev/null 2>&1
+git add . > /dev/null 2>&1
+git commit -m "Changes." > /dev/null 2>&1
+
+# -------------------------------------------------
+# Clone the remote destination repository. We do
+# this because we want to seamlessly splice in all
+# our new files.  We do not want to push w/ force.
+# -------------------------------------------------
+echo "\033[1;31m""CLONING REMOTE REPO.""\033[0m";
+git remote add cloud $REMOTE > /dev/null 2>&1
+git fetch cloud > /dev/null 2>&1
+git checkout -b remote remotes/cloud/master > /dev/null 2>&1
+
+# -------------------------------------------------
+# Delete every file that existed in the remote
+# repository, then add all the files from the
+# temporary working directory. A clean replacement.
+# -------------------------------------------------
+echo "\033[1;31m""MERGING CHANGES.""\033[0m";
+rm -rf `find . ! -wholename './.git' ! -wholename './.git/*'` > /dev/null 2>&1
+git rm -rf --cached . > /dev/null 2>&1
+git add . > /dev/null 2>&1
+git add -u > /dev/null 2>&1
+git commit -m "Deletes." > /dev/null 2>&1
+git merge master > /dev/null 2>&1
+### git merge -s recursive -X theirs master > /dev/null 2>&1 ### alternate method?
+git branch -d master > /dev/null 2>&1
+git branch -mv remote master > /dev/null 2>&1
+
+# -------------------------------------------------
+# Now, finally, we push our collapsed repository
+# made ready for deployment. Nice and clean with
+# our file structure perfectly intact.
+# -------------------------------------------------
+echo "\033[1;31m""PUSHING TO REMOTE.""\033[0m";
+echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
+git push cloud master
+echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
+echo "\033[1;31m""DONE.""\033[0m";
+cd ..
+rm -rf _temp
+echo "\n"
