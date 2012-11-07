@@ -1,8 +1,8 @@
 # Deploy for GIT #
 
-``deploy`` is a shell script for deploying GIT projects to the cloud.  It takes your current working directory as-is and uploads it to a remote GIT repository of your choosing.  It automatically collapses any submodules you may have, maintains your folder structure, and preserves your existing .gitignore files.  Additionally, it seamlessly splices in your latest files to whatever existed before, so you never have to push w/ force.
+``deploy`` is a shell script for deploying GIT projects to the cloud.  It takes your current working directory as-is (even if it's not a GIT repo or even if you're between commits) and pushes everything to a remote GIT repository of your choosing.  The script collapses any submodules you might have into a single repository, while honoring existing .gitignore files and preserving your existing folder structure.  The script is careful in merging your project into whatever existed in the repository before, so you never have to use force to overwrite your files.  The result is a single, perfect, GIT repository pushed to your remote destination.
 
-The result is a clean deployment to your remote destination, all with a single terminal command.  I encourage you to take a look at the file to see what exactly it does, any why.  This script is designed for use with phpFog, AppFog, or any server setup with automated GIT deployments.
+Please take a look at the file to see what exactly ``deploy`` does, any why.  The script is designed for use with phpFog, AppFog, or any server setup with automated GIT deployments.
 
 ## Install ##
 
