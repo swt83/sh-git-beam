@@ -10,13 +10,15 @@ Download ``deploy`` to your working directory. Open the file and input your remo
 
 ### Advanced ###
 
-If you wanted to be cool, you could create a terminal alias for easy download into your working directory:
+If you wanted to be cool, you could create a terminal alias for easy download into your working directory.
+
+In your ``.bashrc`` file, add:
 
 ```
 alias gitdeploy='curl -O https://raw.github.com/swt83/git-deploy/master/deploy'
 ```
 
-Then download with a simple command:
+Then download with a simple terminal command:
 
 ```
 → gitdeploy
