@@ -8,18 +8,30 @@ The result is a clean deployment to your remote destination, all with a single t
 
 Download ``deploy`` to your working directory. Open the file and input your remote GIT repository destination as the ``REMOTE`` variable.
 
+### Advanced ###
+
+If you wanted to be cool, you could create a terminal alias for easy download into your working directory:
+
+```
+alias gitdeploy='curl -O https://raw.github.com/swt83/git-deploy/master/deploy'
+```
+
+Then download with a simple command:
+
+```
+→ gitdeploy
+```
+
 ## Usage ##
 
 From the command-line:
 
 ```
-sh deploy
+→ sh deploy
 ```
-
-## Warning ##
 
 BE CAREFUL! When starting a new project, make sure you use a clean copy of ``deploy`` or you could accidentally overwrite another existing cloud repository.
 
 ## Server ##
 
-In the ``server`` folder I've included two files for use on my server.  I copy them both to my server homefolder, and run ``sh build <PROJECTNAME>`` to automate the creation of bare GIT repos on my server that are prepared for automated deployment to my docroot. Several user permissions are required to get this working properly.
+In the ``server`` folder I've included two files I use on my server.  I copy them both to my server homefolder and run ``sh build <PROJECTNAME>`` to automate the creation of bare GIT repos on my server that are prepared for automated deployment to my docroot. Several user permissions are required to get this working properly.
