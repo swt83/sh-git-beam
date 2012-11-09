@@ -26,14 +26,13 @@ then
 	exit 1
 fi
 echo "\n"
-echo "Deploying to \"$REMOTE\"."
+echo "\033[1;31m""Deploying to \"$REMOTE\".""\033[0m"
 
 # -------------------------------------------------
 # Copy the local working directory to a temporary
 # location and remove all existing GIT information,
 # which allows us to collapse the repository.
 # -------------------------------------------------
-echo "\033[1;31m""COPYING LOCAL REPO.""\033[0m";
 cd ..
 rm -rf _temp > /dev/null 2>&1
 mkdir _temp > /dev/null 2>&1
@@ -64,7 +63,6 @@ git commit -m "Changes." > /dev/null 2>&1
 # this because we want to seamlessly splice in all
 # our new files.  We do not want to push w/ force.
 # -------------------------------------------------
-echo "\033[1;31m""CLONING REMOTE REPO.""\033[0m";
 git remote add cloud $REMOTE > /dev/null 2>&1
 git fetch cloud > /dev/null 2>&1
 git checkout -b remote remotes/cloud/master > /dev/null 2>&1
@@ -74,7 +72,6 @@ git checkout -b remote remotes/cloud/master > /dev/null 2>&1
 # repository, then add all the files from the
 # temporary working directory. A clean replacement.
 # -------------------------------------------------
-echo "\033[1;31m""MERGING CHANGES.""\033[0m";
 rm -rf `find . ! -wholename './.git' ! -wholename './.git/*'` > /dev/null 2>&1
 git rm -rf --cached . > /dev/null 2>&1
 git add . > /dev/null 2>&1
@@ -90,11 +87,9 @@ git branch -mv remote master > /dev/null 2>&1
 # made ready for deployment. Nice and clean with
 # our file structure perfectly intact.
 # -------------------------------------------------
-echo "\033[1;31m""PUSHING TO REMOTE.""\033[0m";
 echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
 git push cloud master
 echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
-echo "\033[1;31m""DONE.""\033[0m";
 cd ..
 rm -rf _temp
 echo "\n"
