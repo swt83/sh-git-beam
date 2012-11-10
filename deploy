@@ -26,7 +26,7 @@ then
 	exit 1
 fi
 echo "\n"
-echo "\033[1;31m""Deploying to \"$REMOTE\".""\033[0m"
+echo "\033[1;31m""$REMOTE"""\033[0m";
 
 # -------------------------------------------------
 # Copy the local working directory to a temporary
