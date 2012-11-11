@@ -42,4 +42,4 @@ git config receive.denycurrentbranch ignore
 cd hooks
 echo -e "#!/bin/sh\ngit checkout -f" > post-receive
 chmod +x post-receive
-cd ~
+cd ../..
