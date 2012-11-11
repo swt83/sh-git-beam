@@ -1,7 +1,18 @@
 #!/bin/sh
 
+# *************************************************
+#
+# A shell script for preparing bare repos that autodeploy.
+#
+# @package    Build
+# @author     Scott Travis <scott.w.travis@gmail.com>
+# @link       http://github.com/swt83/git-deploy
+# @license    MIT License
+#
+# *************************************************
+
 # -------------------------------------------------
-# Capture project name.
+# CAPTURE PROJECT NAME
 # -------------------------------------------------
 WORKTREE="$1"
 if [ "$WORKTREE" = "" ]
@@ -11,24 +22,24 @@ then
 fi
 
 # -------------------------------------------------
-# Make docroot directory.
+# CREATE DEPLOYMENT DIRECTORY
 # -------------------------------------------------
 mkdir /var/www/html/$WORKTREE
 
 # -------------------------------------------------
-# Make git project directory.
+# CREATE BARE REPOSITORY
 # -------------------------------------------------
-mkdir $WORKTREE.git
-cd $WORKTREE.git
+mkdir $WORKTREE
+cd $WORKTREE
 git init --bare
 git config core.worktree /var/www/html/$WORKTREE
 git config core.bare false
 git config receive.denycurrentbranch ignore
 
 # -------------------------------------------------
-# Copy git hook into project directory.
+# CREATE POST-RECEIVE HOOK
 # -------------------------------------------------
 cd hooks
-cp ~/hook post-receive
+echo -e "#!/bin/sh\ngit checkout -f" > post-receive
 chmod +x post-receive
 cd ~

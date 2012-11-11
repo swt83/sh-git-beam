@@ -33,7 +33,3 @@ From the command-line:
 ```
 
 BE CAREFUL! When starting a new project, make sure you use a clean copy of ``deploy`` or you could accidentally overwrite another existing cloud repository.
-
-## Server ##
-
-In the ``server`` folder I've included two files I use on my server.  I copy them both to my server homefolder and run ``→ sh build <PROJECTNAME>`` to automate the creation of bare GIT repos on my server that are prepared for automated deployment to my docroot. Several user permissions are required to get this working properly.

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# A shell script for collapsing and deploying GIT super-projects to the cloud.
+# A shell script for deploying GIT projects to the cloud.
 #
 # @package    Deploy
 # @author     Scott Travis <scott.w.travis@gmail.com>
@@ -25,7 +25,7 @@ then
 	echo "You failed to provide remote git address!"
 	exit 1
 fi
-echo "\n"
+echo ""
 echo "\033[1;31m""$REMOTE""\033[0m";
 
 # -------------------------------------------------
@@ -92,4 +92,4 @@ git push cloud master
 echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
 cd ..
 rm -rf _temp
-echo "\n"
+echo ""
