@@ -26,7 +26,7 @@ sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 # -------------------------------------------------
 # OPEN SPECIFIC PORTS FOR SPECIFIC IPs
 # -------------------------------------------------
-if [ "$1" = "open" && "$2" != "" && "$3" != "" ]
+if ["$1"="open"] && ["$2"!=""] && ["$3"!=""]
 then
 	sudo iptables -A INPUT -p tcp -s $3 --dport $2 -j ACCEPT
 fi
@@ -34,7 +34,7 @@ fi
 # -------------------------------------------------
 # BLOCK SPECIFIC IPs
 # -------------------------------------------------
-if [ "$1" = "block" && "$2" != "" ]
+if ["$1"="block"] && ["$2"!=""]
 then
 	sudo iptables -A INPUT -s $2 -j DROP
 fi

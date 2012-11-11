@@ -20,9 +20,9 @@ REMOTE=""
 # set and ready to go. Flight check.
 # -------------------------------------------------
 LOCAL=$(pwd)
-if [ "$REMOTE" = "" ]
+if ["$REMOTE"=""]
 then
-	echo "You failed to provide remote git address!"
+	echo "You failed to provide a remote GIT repository!"
 	exit 1
 fi
 echo ""

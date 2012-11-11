@@ -15,7 +15,7 @@
 # CAPTURE PROJECT NAME
 # -------------------------------------------------
 WORKTREE="$1"
-if [ "$WORKTREE" = "" ]
+if ["$WORKTREE"=""]
 then
 	echo "You failed to provide a build name!"
 	exit 1
