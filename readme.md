@@ -15,7 +15,7 @@ If you wanted to be cool, you could create a terminal alias for easy download in
 In your ``.bashrc`` file, add:
 
 ```
-alias gitdeploy='curl -O https://raw.github.com/swt83/git-deploy/master/deploy'
+alias gitdeploy='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy'
 ```
 
 Then download with a simple terminal command:
