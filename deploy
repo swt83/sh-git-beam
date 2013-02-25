@@ -22,8 +22,8 @@ REMOTE=""
 LOCAL=$(pwd)
 if [ "$REMOTE" = "" ]
 then
-	echo "You failed to provide a remote GIT repository!"
-	exit 1
+    echo "You failed to provide a remote GIT repository!"
+    exit 1
 fi
 echo ""
 echo "\033[1;31m""$REMOTE""\033[0m";
@@ -72,7 +72,11 @@ git checkout -b remote remotes/cloud/master > /dev/null 2>&1
 # repository, then add all the files from the
 # temporary working directory. A clean replacement.
 # -------------------------------------------------
-rm -rf `find . ! -wholename './.git' ! -wholename './.git/*'` > /dev/null 2>&1
+mv .git ../_git > /dev/null 2>&1
+rm -rf * > /dev/null 2>&1
+rm -rf .* > /dev/null 2>&1
+rm -rf *.* > /dev/null 2>&1
+mv ../_git .git
 git rm -rf --cached . > /dev/null 2>&1
 git add . > /dev/null 2>&1
 git add -u > /dev/null 2>&1
