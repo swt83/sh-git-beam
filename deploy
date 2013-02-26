@@ -31,7 +31,7 @@ echo "\033[1;31m""$REMOTE""\033[0m";
 # -------------------------------------------------
 # Copy the local working directory to a temporary
 # location and remove all existing GIT information,
-# which allows us to collapse the repository.
+# which acts to collapse submodules.
 # -------------------------------------------------
 cd ..
 rm -rf _temp > /dev/null 2>&1
@@ -44,15 +44,15 @@ rm -rf `find . -name '.gitattributes'` > /dev/null 2>&1
 
 # -------------------------------------------------
 # Amend every .gitignore file to NOT ignore itself.
-# We need this to preserve file structures that
-# include empty directories when we deploy.
+# We want to keep those files so we don't upload
+# deliberately ignored files or folders.
 # -------------------------------------------------
 for f in $(find . -name '.gitignore'); do echo "\n!.gitignore" >> $f; done
 
 # -------------------------------------------------
-# Create a new clean repository that has now
+# Create the new clean repository that has 
 # collapsed all the submodules that existed before.
-# Previous .gitignore rules still apply.
+# Original .gitignore rules still apply.
 # -------------------------------------------------
 git init > /dev/null 2>&1
 git add . > /dev/null 2>&1

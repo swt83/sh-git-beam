@@ -1,35 +1,40 @@
-# Deploy for GIT #
+# Deploy
 
-``deploy`` is a shell script for deploying GIT projects to the cloud.  It takes your current working directory as-is (even if it's not a GIT repo or even if you're between commits) and pushes everything to a remote GIT repository of your choosing.  The script collapses any submodules you might have into a new single repository, while honoring your .gitignore files and preserving your existing folder structure.  The script is careful in merging your project into whatever exists on the remote repository, so you never have to use force to overwrite those remote files.  The result is a single, perfect, GIT repository pushed to your remote destination.
+A shell script for using GIT to deploy projects to the cloud.
 
-Please take a look at ``deploy`` to see exactly what it does and why.  The script is designed for use with phpFog, AppFog, or any server setup with automated GIT deployments.
+* Does not require the working directory to be a GIT repo.
+* Will respectfully block the files defined in ``.gitignore``.
+* Will perfectly collapse all submodules in the project.
+* Will perfectly overwrite remote files, w/out force.
 
-## Install ##
+Clean repository deployments, every time.
 
-Download ``deploy`` to your working directory. Open the file and input your remote GIT repository destination as the ``REMOTE`` variable.
+## Install
 
-### Advanced ###
-
-If you wanted to be cool, you could create a terminal alias for easy download into your working directory.
-
-In your ``.bashrc`` file, add:
+Create a simple terminal alias in your ``.bashrc`` file:
 
 ```
 alias gitdeploy='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy'
 ```
 
-Then download with a simple terminal command:
+Download the script to any working directory:
 
 ```
-→ gitdeploy
+$ gitdeploy
 ```
 
-## Usage ##
+Manually amend the file to include the location of your remote repository.
 
-From the command-line:
+## Usage
+
+From your working directory:
 
 ```
-→ sh deploy
+$ sh deploy
 ```
+
+Your files will immediately be pushed to the remote.
+
+## Notes
 
 BE CAREFUL! When starting a new project, make sure you use a clean copy of ``deploy`` or you could accidentally overwrite another existing cloud repository.
