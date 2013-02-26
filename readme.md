@@ -27,7 +27,3 @@ $ sh deploy
 ```
 
 Your files will immediately be pushed to the remote.
-
-## Notes
-
-BE CAREFUL! When starting a new project, make sure you use a clean copy of ``deploy`` or you could accidentally overwrite another existing cloud repository.
