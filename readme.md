@@ -1,13 +1,6 @@
 # Deploy
 
-A shell script for using GIT to deploy projects to the cloud.
-
-* Does not require the working directory to be a GIT repo.
-* Will respectfully block the files defined in ``.gitignore``.
-* Will perfectly collapse all submodules in the project.
-* Will perfectly overwrite remote files, w/out force.
-
-Clean repository deployments, every time.
+A shell script for using GIT to deploy projects to the cloud. Clean repository deployments, every time.
 
 ## Install
 
