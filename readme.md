@@ -1,6 +1,6 @@
 # Deploy
 
-A shell script for using GIT to deploy projects to the cloud. Clean repository deployments, every time.
+A shell script for using GIT to deploy projects to the cloud. Clean working directory deployments, every time.
 
 ## Install
 
