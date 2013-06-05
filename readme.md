@@ -16,7 +16,11 @@ Download the script to any working directory:
 $ gitdeploy
 ```
 
-Manually amend the file to include the location of your remote repository.
+Manually amend the file to include the location of your remote repository:
+
+```
+REMOTE="foo@bar.net:myrepo.git"
+```
 
 ## Usage
 
@@ -27,3 +31,26 @@ $ sh deploy
 ```
 
 Your files will immediately be pushed to the remote.
+
+## Scaling
+
+You may need to push to multiple servers, in which case you can amend the script to accept input:
+
+```
+REMOTE="$1"
+```
+
+Then create a new file, say ``deport``, and issue each command:
+
+```
+#!/bin/sh
+
+sh deploy foo@bar1.net:myrepo.git
+sh deploy foo@bar2.net:myrepo.git
+```
+
+Finally, you can mass-deploy:
+
+```
+sh deport
+```
