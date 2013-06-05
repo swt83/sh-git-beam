@@ -26,7 +26,7 @@ REMOTE="foo@bar.net:myrepo.git"
 
 From your working directory:
 
-```
+```bash
 $ sh deploy
 ```
 
