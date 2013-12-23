@@ -7,19 +7,19 @@ A shell script for using GIT to deploy projects to the cloud. Clean working dire
 Create a simple terminal alias in your ``.bashrc`` file:
 
 ```bash
-alias gitdeploy='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy'
+alias 'deploy install'='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy && curl -O https://raw.github.com/swt83/sh-git-deploy/master/deport'
 ```
 
-Download the script to any working directory:
+Use the alias to install the deploy scripts to your working directory:
 
 ```bash
-$ gitdeploy
+$ deploy install
 ```
 
-Manually amend the file to include the location of your remote repository:
+Manually amend the ``deport`` file to include the location(s) of your remote repository(s):
 
 ```bash
-REMOTE="foo@bar.net:myrepo.git"
+sh deploy foo@bar3.net:myrepo.git
 ```
 
 ## Usage
@@ -27,30 +27,11 @@ REMOTE="foo@bar.net:myrepo.git"
 From your working directory:
 
 ```bash
-$ sh deploy
-```
-
-Your files will immediately be pushed to the remote.
-
-## Scaling
-
-You may need to push to multiple servers, in which case you can amend the script to accept input:
-
-```bash
-REMOTE="$1"
-```
-
-Then create a new file, say ``deport``, and issue each command:
-
-```bash
-#!/bin/sh
-
-sh deploy foo@bar1.net:myrepo.git
-sh deploy foo@bar2.net:myrepo.git
-```
-
-Finally, you can mass-deploy:
-
-```bash
 $ sh deport
 ```
+
+Your files will immediately be pushed to the remote(s).
+
+## Notes
+
+- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files it really should.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing in my dependencies.  I actually need the deploy script to send those up to the server, and so I've added a way to modify the ``deploy`` script to un-ignore specific folders or files.

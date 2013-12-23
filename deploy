@@ -10,7 +10,9 @@
 #
 # *************************************************
 
-REMOTE=""
+REMOTE="$1"
+
+UNIGNORE=".gitignore|/vendor|composer.phar|composer.lock"
 
 # *************************************************
 
@@ -47,10 +49,16 @@ rm -rf `find . -name '.gitattributes'` > /dev/null 2>&1
 # We want to keep those files so we don't upload
 # deliberately ignored files or folders.
 # -------------------------------------------------
-for f in $(find . -name '.gitignore'); do echo "\n!.gitignore" >> $f; done
+for f in $(find . -name '.gitignore')
+do
+    for i in $(echo $UNIGNORE | tr "|" "\n")
+    do
+      echo "\n!$i" >> $f;
+    done
+done
 
 # -------------------------------------------------
-# Create the new clean repository that has 
+# Create the new clean repository that has
 # collapsed all the submodules that existed before.
 # Original .gitignore rules still apply.
 # -------------------------------------------------
