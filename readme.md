@@ -7,19 +7,19 @@ A shell script for using GIT to deploy projects to the cloud. Clean working dire
 Create a simple terminal alias in your ``.bashrc`` file:
 
 ```bash
-alias 'deploy install'='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy && curl -O https://raw.github.com/swt83/sh-git-deploy/master/deport'
+alias 'getdeploy'='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy && curl -O https://raw.github.com/swt83/sh-git-deploy/master/deport'
 ```
 
 Use the alias to install the deploy scripts to your working directory:
 
 ```bash
-$ deploy install
+$ getdeploy
 ```
 
 Manually amend the ``deport`` file to include the location(s) of your remote repository(s):
 
 ```bash
-sh deploy foo@bar3.net:myrepo.git
+sh deploy foo@bar1.net:myrepo.git
 ```
 
 ## Usage
