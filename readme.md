@@ -34,4 +34,4 @@ Your files will immediately be pushed to the remote(s).
 
 ## Notes
 
-- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files it really should.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing in my dependencies.  I actually need the deploy script to send those up to the server, and so I've added a way to modify the ``deploy`` script to un-ignore specific folders or files.
+- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files it really should.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing my dependencies.  I actually need the deploy script to send those up to the server, and so I've added a way to modify the ``deploy`` script to un-ignore specific folders or files.
