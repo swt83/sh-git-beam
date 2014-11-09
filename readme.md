@@ -42,11 +42,15 @@ $ sh beam_prod.sh
 Usually, because I'm lazy, I rename the file to be as few characters as possible:
 
 ```bash
-sh b
+$ sh b
 ```
 
 Watch the script deploy your project.
 
-## Notes
+## A Word About ``.gitignore`` Files
 
-- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files you actually want to keep.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing my dependencies.  I need the script to send those up to the server, and so I've added a way to modify the ``transport.sh`` script to un-ignore specific folders or files.
+The script tries to honor your ``.gitignore`` files. This is to prevent pushing massive files that aren't needed, wasting space and bandwidth.
+
+However, sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files you actually want to preserve.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing my dependencies.  I need these dependencies to get pushed, regardless of the ``.gitignore`` file.
+
+You can modify the ``transport.sh`` file to un-ignore specific folders or files.  An array of those files already exists, which you can amend as needed.
