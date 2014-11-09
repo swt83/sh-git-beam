@@ -4,7 +4,7 @@
 
 A shell script for deploying GIT super-projects to the cloud.
 
-GIT deployments are a must, but when you have submodules and private repositories in your project, you're going to have a bad time. This script compresses your entire project, submodules and all, into a single repository and pushes that package to your remote. The result is a perfect, clean deployment.
+GIT deployments are a must, but when you have submodules and private repositories in your project, you're going to have a bad time. This script compresses your entire project, submodules and all, into a single repository and pushes that package to your remote. The result is a perfect, clean deployment. It pushes whatever you have at the moment, regardless of commits.
 
 ## Usage
 
@@ -14,25 +14,25 @@ Copy the files to into your project root:
 curl -O https://raw.github.com/swt83/sh-beam/master/deploy
 ```
 
-Modify the ``transport.sh`` file to include your remote destinations:
+Modify the ``beam.sh`` file to include your remote destinations:
 
 ```bash
-vim transport.sh
+vim beam.sh
 ```
 
 When you're ready, initiate a transport to deploy your project:
 
 ```bash
-$ sh transport.sh
+$ sh beam.sh
 ```
 
-When pushing for the first time, a special parameter should be passed:
+When pushing for the first time to a bare repo, a special parameter should be passed:
 
 ```bash
-$ sh transport.sh init
+$ sh beam.sh init
 ```
 
-For managing environments, you could alternately copy the script several times and modify each version with unique remotes:
+To manage environments, you can alternately copy the script several times and modify each version with unique remotes:
 
 ```bash
 $ sh transport_dev.sh
