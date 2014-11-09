@@ -1,4 +1,4 @@
-# Beam ("Beam Me Up, Scotty!")
+# "Beam Me Up, Scotty!"
 
 A shell script for deploying GIT super-projects to the cloud.
 
@@ -11,7 +11,7 @@ GIT deployments are a must, but when you have submodules and private repositorie
 Copy the files to into your project root:
 
 ```bash
-$ curl -O https://raw.github.com/swt83/sh-beam/master/deploy
+$ curl -O https://raw.githubusercontent.com/swt83/sh-beam/master/beam.sh && mkdir .beam && cd .beam && curl -O https://raw.githubusercontent.com/swt83/sh-beam/master/.beam/transporter.sh && cd ..
 ```
 
 Modify the ``beam.sh`` file to include your remote destinations:
