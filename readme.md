@@ -1,37 +1,44 @@
-# Deploy
+# Beam ("Beam Me Up, Scotty!")
 
-A shell script for using GIT to deploy projects to the cloud. Clean working directory deployments, every time.
+![Beam Me Up, Scotty!](http://www.thetimes.co.uk/tto/multimedia/archive/00436/133583538_star-trek_436777c.jpg)
 
-## Install
+A shell script for deploying GIT super-projects to the cloud.
 
-Create a simple terminal alias in your ``.bashrc`` file:
-
-```bash
-alias 'getdeploy'='curl -O https://raw.github.com/swt83/sh-git-deploy/master/deploy && curl -O https://raw.github.com/swt83/sh-git-deploy/master/deport'
-```
-
-Use the alias to install the deploy scripts to your working directory:
-
-```bash
-$ getdeploy
-```
-
-Manually amend the ``deport`` file to include the location(s) of your remote repository(s):
-
-```bash
-sh deploy foo@bar1.net:myrepo.git
-```
+GIT deployments are a must, but when you have submodules and private repositories in your project, you're going to have a bad time. This script compresses your entire project, submodules and all, into a single repository and pushes that package to your remote. The result is a perfect, clean deployment.
 
 ## Usage
 
-From your working directory:
+Copy the files to into your project root:
 
 ```bash
-$ sh deport
+curl -O https://raw.github.com/swt83/sh-beam/master/deploy
 ```
 
-Your files will immediately be pushed to the remote(s).
+Modify the ``transport.sh`` file to include your remote destinations:
 
-## Notes
+```bash
+vim transport.sh
+```
 
-- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files it really should.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing my dependencies.  I actually need the deploy script to send those up to the server, and so I've added a way to modify the ``deploy`` script to un-ignore specific folders or files.
+When you're ready, initiate a transport to deploy your project:
+
+```bash
+$ sh transport.sh
+```
+
+When pushing for the first time, a special parameter should be passed:
+
+```bash
+$ sh transport.sh init
+```
+
+For managing environments, you could alternately copy the script several times and modify each version with unique remotes:
+
+```bash
+$ sh transport_dev.sh
+$ sh transport_prod.sh
+```
+
+## Particulars
+
+- Sometimes a project contains various ``.gitignore`` files that prevent the script from pushing files you actually want to keep.  For me, this involves PHP's Composer package management system and the ``vendors/`` folder containing my dependencies.  I need the script to send those up to the server, and so I've added a way to modify the ``transport.sh`` script to un-ignore specific folders or files.

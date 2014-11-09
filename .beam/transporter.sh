@@ -1,34 +1,57 @@
 #!/bin/sh
-
-#
+# =================================================
 # A shell script for deploying GIT projects to the cloud.
 #
-# @package    Deploy
+# @package    Beam ("Beam Me Up, Scotty!")
 # @author     Scott Travis <scott.w.travis@gmail.com>
-# @link       http://github.com/swt83/sh-git-deploy
+# @link       http://github.com/swt83/sh-beam
 # @license    MIT License
-#
-# *************************************************
+# =================================================
 
-REMOTE="$1"
-
+# -------------------------------------------------
+# Set the files that you want to unignore.
+# -------------------------------------------------
 UNIGNORE=".gitignore|/vendor|composer.phar|composer.lock"
-
-# *************************************************
 
 # -------------------------------------------------
 # Set the local directory that we are working in,
 # and make sure that we have a remote destination
 # set and ready to go. Flight check.
 # -------------------------------------------------
+cd .. # go up from .beam folder
 LOCAL=$(pwd)
+REMOTE="$1"
 if [ "$REMOTE" = "" ]
 then
-    echo "You failed to provide a remote GIT repository!"
+    echo "You failed to provide a remote GIT repository!";
     exit 1
 fi
 echo ""
-echo "\033[1;31m""$REMOTE""\033[0m";
+echo "$REMOTE";
+
+# -------------------------------------------------
+# Capture the option ("boot"), if provided. This
+# will mean the first push will fail, so we need
+# to push some dummy files to get things rolling.
+# -------------------------------------------------
+OPTION="$2"
+if [ "$OPTION" = "init" ]
+then
+    echo "/////////////////////////////////////////////////";
+    echo "BOOTING BARE REPO W/ DUMMY FILES";
+    cd ..
+    rm -rf _temp > /dev/null 2>&1
+    mkdir _temp > /dev/null 2>&1
+    cd _temp
+    touch index.php
+    #touch composer.json # to satisfy Heroku
+    git init > /dev/null 2>&1
+    git add . > /dev/null 2>&1
+    git commit -m "Working." > /dev/null 2>&1
+    git remote add origin "$REMOTE" > /dev/null 2>&1
+    git push origin master
+    cd $LOCAL;
+fi
 
 # -------------------------------------------------
 # Copy the local working directory to a temporary
@@ -99,9 +122,9 @@ git branch -mv remote master > /dev/null 2>&1
 # made ready for deployment. Nice and clean with
 # our file structure perfectly intact.
 # -------------------------------------------------
-echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
+echo "/////////////////////////////////////////////////";
 git push cloud master
-echo "\033[1;31m""/////////////////////////////////////////////////""\033[0m";
+echo "/////////////////////////////////////////////////";
 cd ..
-rm -rf _temp
+rm -rf _temp > /dev/null 2>&1
 echo ""

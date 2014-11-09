@@ -1,5 +1,0 @@
-#!/bin/sh
-
-sh deploy foo@bar1.net:myrepo.git
-sh deploy foo@bar2.net:myrepo.git
-sh deploy foo@bar3.net:myrepo.git
