@@ -1,8 +1,8 @@
 # Beam ("Beam Me Up, Scotty!")
 
-![Beam Me Up, Scotty!](http://www.thetimes.co.uk/tto/multimedia/archive/00436/133583538_star-trek_436777c.jpg)
-
 A shell script for deploying GIT super-projects to the cloud.
+
+![Beam Me Up, Scotty!](http://www.thetimes.co.uk/tto/multimedia/archive/00436/133583538_star-trek_436777c.jpg)
 
 GIT deployments are a must, but when you have submodules and private repositories in your project, you're going to have a bad time. This script compresses your entire project, submodules and all, into a single repository and pushes that package to your remote. The result is a perfect, clean deployment. It pushes whatever you have at the moment, regardless of commits.
 
