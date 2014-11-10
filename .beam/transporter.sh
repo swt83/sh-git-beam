@@ -4,7 +4,7 @@
 #
 # @package    Beam ("Beam Me Up, Scotty!")
 # @author     Scott Travis <scott.w.travis@gmail.com>
-# @link       http://github.com/swt83/sh-beam
+# @link       http://github.com/swt83/sh-git-beam
 # @license    MIT License
 # =================================================
 
