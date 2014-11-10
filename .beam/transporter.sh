@@ -1,6 +1,6 @@
 #!/bin/sh
 # =================================================
-# A shell script for deploying GIT projects to the cloud.
+# A shell script for deploying GIT super-projects to the cloud.
 #
 # @package    Beam ("Beam Me Up, Scotty!")
 # @author     Scott Travis <scott.w.travis@gmail.com>
