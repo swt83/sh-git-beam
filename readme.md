@@ -8,7 +8,7 @@ GIT deployments are a must, but when you have submodules and private repositorie
 
 ## Usage
 
-Copy the files to into your project root:
+Copy the files into your project root:
 
 ```bash
 $ curl -O https://raw.githubusercontent.com/swt83/sh-git-beam/master/beam.sh && mkdir .beam && cd .beam && curl -O https://raw.githubusercontent.com/swt83/sh-git-beam/master/.beam/transporter.sh && cd ..

@@ -37,7 +37,6 @@ OPTION="$2"
 if [ "$OPTION" = "init" ]
 then
     echo "/////////////////////////////////////////////////";
-    echo "BOOTING BARE REPO W/ DUMMY FILES";
     cd ..
     rm -rf _temp > /dev/null 2>&1
     mkdir _temp > /dev/null 2>&1
