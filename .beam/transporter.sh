@@ -18,7 +18,6 @@ UNIGNORE=".gitignore|/vendor|composer.phar|composer.lock"
 # and make sure that we have a remote destination
 # set and ready to go. Flight check.
 # -------------------------------------------------
-cd .. # go up from .beam folder
 LOCAL=$(pwd)
 REMOTE="$1"
 if [ "$REMOTE" = "" ]
