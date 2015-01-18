@@ -18,7 +18,7 @@ DESTINATION[0]="git@foobar.com:repo.git"
 # -------------------------------------------------
 # Engage.
 # -------------------------------------------------
-for D in $DESTINATION
+for D in "${DESTINATION[@]}"
 do
     sh .beam/transporter.sh "$D" "$1"
 done
