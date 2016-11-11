@@ -110,7 +110,7 @@ git rm -rf --cached . > /dev/null 2>&1
 git add . > /dev/null 2>&1
 git add -u > /dev/null 2>&1
 git commit -m "Deletes." > /dev/null 2>&1
-git merge master > /dev/null 2>&1
+git merge master --allow-unrelated-histories > /dev/null 2>&1
 ### git merge -s recursive -X theirs master > /dev/null 2>&1 ### alternate method?
 git branch -d master > /dev/null 2>&1
 git branch -mv remote master > /dev/null 2>&1
